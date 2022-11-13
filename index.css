@@ -1,0 +1,41 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+body{
+  background-color: #82d2e5;;
+  color: white;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+#container{
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  grid-column-gap: 0px;
+  grid-row-gap: 10px;
+  width: 70%;
+  
+}
+.divImagenes{
+  position: relative;
+  text-align: center;
+}
+.imagen-tapada{
+  position: absolute;
+  width: auto;
+  height: 255px;
+  border-radius: 10px;
+
+}
+.imagen{
+  position: relative;
+  width: auto;
+  height: 260px;
+  visibility: hidden;
+  border-radius: 10px;
+}
+#p{
+  font-size: larger;
+}

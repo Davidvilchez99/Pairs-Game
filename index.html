@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<script>
+        imagenes = ['./imagenes/Zapdos.JPG','./imagenes/Zapdos.JPG','./imagenes/Charizard.JPG', './imagenes/Charizard.JPG', './imagenes/Infernape.JPG', './imagenes/Infernape.JPG', './imagenes/Pikachu.JPG', './imagenes/Pikachu.JPG', './imagenes/Gyarados.JPG', './imagenes/Gyarados.JPG'];
+        desorden = imagenes.sort(()=>{return Math.random()-0.5});
+        pulsador = 0;
+        aciertos = 0;
+        tarjeta1 = null;
+        tarjeta2 = null;
+        imgs = document.getElementsByClassName("imagen");
+        
+        window.onload = () =>{
+            for(i=0; i<imagenes.length; i++){
+                imgs[i].src=desorden[i];
+            }
+            p = document.getElementById("p");
+            DIVmilisegundos = document.getElementById("milisegundos");
+            DIVsegundos = document.getElementById("segundos");
+            DIVminutos = document.getElementById("minutos");
+            DIVmilisegundos.innerHTML = 00;
+            DIVsegundos.innerHTML = 00;
+            DIVminutos.innerHTML = 00;
+            segundos = 0;
+            milisegundos = 0;
+            minutos = 0;
+            
+        function start(){
+            cronometro = setInterval(
+                function(){
+                    if(milisegundos == 60){
+                        milisegundos =0;
+                        segundos++;
+                        DIVsegundos.innerHTML = segundos
+                        
+                        if(segundos == 60){
+                            segundos = 0;
+                            minutos++;
+                            DIVminutos.innerHTML = minutos
+                        }
+                    }
+                    DIVmilisegundos.innerHTML = milisegundos;
+                    milisegundos++;
+                }
+            ,10)
+        }
+        start();
+        }
+        
+        function destapar(i){
+            pulsador++;
+            if(pulsador==1){
+                tarjeta1 = imgs[i];
+                tarjeta1.style.visibility = "visible";
+
+
+            }else if(pulsador ==2){
+                tarjeta2 = imgs[i];
+                tarjeta2.style.visibility = "visible";
+
+                if(tarjeta1.src==tarjeta2.src){
+                    aciertos++;
+                    pulsador = 0;
+                }else{
+                    setTimeout(()=>{
+                        tarjeta1.style.visibility = "hidden";
+                        tarjeta2.style.visibility = "hidden";
+                        pulsador = 0;
+                    },2000)
+                }
+            }
+            if (aciertos ==5){
+                p.innerHTML  = "Has ganado";
+                clearInterval(cronometro);
+            }
+        }
+        
+</script>
+<body>
+    <div id="father">
+        <h1>JavaScript pairs Game</h1><br>
+        <h3>Click any card to begin</h3><br>
+        <span id="minutos"></span>:<span id="segundos"></span>:<span id="milisegundos"></span><br><br>
+        <div id="container">
+                    <div class="divImagenes">
+                        <img src="./imagenes/Pokemon.JPG" class="imagen-tapada" onclick="destapar(0)">
+                        <img src="" id="imgagen0" class="imagen">
+                    </div>
+                    <div class="divImagenes">
+                        <img src="./imagenes/Pokemon.JPG" class="imagen-tapada" onclick="destapar(1)">
+                        <img src="" id="imgagen1" class="imagen">
+                    </div>
+                    <div class="divImagenes">
+                        <img src="./imagenes/Pokemon.JPG" class="imagen-tapada" onclick="destapar(2)">
+                        <img src="" id="imgagen2" class="imagen">
+                    </div>
+                    <div class="divImagenes">
+                        <img src="./imagenes/Pokemon.JPG" class="imagen-tapada" onclick="destapar(3)">
+                        <img src="" id="imgagen3" class="imagen">
+                    </div>
+                    <div class="divImagenes">
+                        <img src="./imagenes/Pokemon.JPG" class="imagen-tapada" onclick="destapar(4)">
+                        <img src="" id="imgagen4" class="imagen">
+                    </div>
+                    <div class="divImagenes">
+                        <img src="./imagenes/Pokemon.JPG" class="imagen-tapada" onclick="destapar(5)">
+                        <img src="" id="imgagen5" class="imagen">
+                    </div>
+                    <div class="divImagenes">
+                        <img src="./imagenes/Pokemon.JPG" class="imagen-tapada" onclick="destapar(6)">
+                        <img src="" id="imgagen6" class="imagen">
+                    </div>
+                    <div class="divImagenes">
+                        <img src="./imagenes/Pokemon.JPG" class="imagen-tapada" onclick="destapar(7)">
+                        <img src="" id="imgagen7" class="imagen">
+                    </div>
+                    <div class="divImagenes">
+                        <img src="./imagenes/Pokemon.JPG" class="imagen-tapada" onclick="destapar(8)">
+                        <img src="" id="imgagen8" class="imagen">
+                    </div>
+                    <div class="divImagenes">
+                        <img src="./imagenes/Pokemon.JPG" class="imagen-tapada" onclick="destapar(9)">
+                        <img src="" id="imgagen9" class="imagen">
+                    </div>
+        </div>
+        <div>
+            <p id="p"></p>
+        </div>
+    </div>
+</body>
+</html>
